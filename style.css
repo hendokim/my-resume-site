@@ -1,0 +1,488 @@
+:root {
+  --black: #0a0a0b;
+  --charcoal: #141416;
+  --gray-900: #1b1b1e;
+  --gray-800: #262629;
+  --gray-700: #3a3a3f;
+  --gray-600: #52525b;
+  --gray-500: #71717a;
+  --gray-400: #a1a1aa;
+  --gray-200: #e4e4e7;
+  --white: #ffffff;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Inter", -apple-system, "Pretendard", "Noto Sans KR", Segoe UI, Roboto, sans-serif;
+  background: var(--white);
+  color: var(--black);
+  line-height: 1.6;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.mono {
+  font-family: "JetBrains Mono", "SF Mono", monospace;
+}
+
+/* ---------- HERO ---------- */
+
+.hero {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(160deg, var(--black) 0%, var(--charcoal) 55%, var(--gray-900) 100%);
+  color: var(--white);
+  padding: 100px 24px 70px;
+  text-align: center;
+}
+
+.hero-grid-overlay {
+  position: absolute;
+  inset: 0;
+  background-image:
+    repeating-linear-gradient(0deg, rgba(255,255,255,0.045) 0, rgba(255,255,255,0.045) 1px, transparent 1px, transparent 48px),
+    repeating-linear-gradient(90deg, rgba(255,255,255,0.045) 0, rgba(255,255,255,0.045) 1px, transparent 1px, transparent 48px);
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, rgba(0,0,0,0.9) 0%, transparent 80%);
+  -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, rgba(0,0,0,0.9) 0%, transparent 80%);
+  pointer-events: none;
+}
+
+.hero-car-decor {
+  position: absolute;
+  top: 12%;
+  right: -60px;
+  width: 340px;
+  height: 340px;
+  color: var(--white);
+  opacity: 0.06;
+  transform: rotate(-6deg);
+  pointer-events: none;
+}
+
+.hero-inner {
+  position: relative;
+  z-index: 1;
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.hero-eyebrow {
+  font-family: "JetBrains Mono", monospace;
+  letter-spacing: 3px;
+  font-size: 12px;
+  color: var(--gray-400);
+  font-weight: 500;
+  margin-bottom: 16px;
+}
+
+.hero h1 {
+  font-size: 48px;
+  font-weight: 800;
+  letter-spacing: -1px;
+  margin-bottom: 14px;
+}
+
+.hero-tagline {
+  font-size: 17px;
+  color: var(--gray-400);
+  margin-bottom: 28px;
+}
+
+.hero-contact {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 13px;
+  color: var(--gray-500);
+}
+
+.hero-contact a {
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.hero-contact a:hover {
+  color: var(--white);
+  border-color: var(--white);
+}
+
+.hero-contact span {
+  margin: 0 10px;
+  color: var(--gray-700);
+}
+
+.road-strip {
+  position: relative;
+  height: 3px;
+  width: 100%;
+  overflow: hidden;
+  background: var(--gray-800);
+}
+
+.road-strip::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: repeating-linear-gradient(90deg, var(--white) 0 24px, transparent 24px 48px);
+  opacity: 0.35;
+  animation: road-move 3.5s linear infinite;
+}
+
+.road-strip--footer {
+  background: var(--gray-200);
+}
+
+.road-strip--footer::after {
+  background-image: repeating-linear-gradient(90deg, var(--gray-600) 0 24px, transparent 24px 48px);
+}
+
+@keyframes road-move {
+  from { background-position-x: 0; }
+  to { background-position-x: -48px; }
+}
+
+/* ---------- NAVBAR ---------- */
+
+.navbar {
+  background: var(--black);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  border-bottom: 1px solid var(--gray-800);
+}
+
+.navbar-inner {
+  max-width: 860px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  gap: 36px;
+  padding: 16px 24px;
+  overflow-x: auto;
+}
+
+.navbar a {
+  font-family: "JetBrains Mono", monospace;
+  color: var(--gray-500);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  white-space: nowrap;
+  border-bottom: 1px solid transparent;
+  padding-bottom: 4px;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.navbar a:hover {
+  color: var(--white);
+  border-color: var(--white);
+}
+
+/* ---------- LAYOUT ---------- */
+
+main {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.section {
+  padding: 64px 0;
+  border-bottom: 1px solid var(--gray-200);
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.section.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.section:last-child {
+  border-bottom: none;
+}
+
+.section-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 12px;
+  letter-spacing: 2px;
+  color: var(--gray-500);
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+.section-eyebrow .icon {
+  width: 15px;
+  height: 15px;
+  color: var(--gray-500);
+}
+
+.section-title {
+  font-size: 24px;
+  font-weight: 800;
+  margin-bottom: 28px;
+  color: var(--black);
+  letter-spacing: -0.5px;
+}
+
+.about-text {
+  font-size: 16px;
+  color: var(--gray-600);
+  max-width: 640px;
+}
+
+/* ---------- EXPERIENCE ---------- */
+
+.company-block {
+  margin-bottom: 40px;
+}
+
+.company-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.company-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 6px;
+  background: var(--black);
+  color: var(--white);
+  flex-shrink: 0;
+}
+
+.company-icon .icon {
+  width: 17px;
+  height: 17px;
+}
+
+.company-header h3 {
+  font-size: 19px;
+  font-weight: 800;
+}
+
+.company-years {
+  font-size: 14px;
+  color: var(--gray-500);
+  font-weight: 500;
+}
+
+.company-duration {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 12px;
+  color: var(--gray-600);
+  font-weight: 500;
+  border: 1px solid var(--gray-300, #d4d4d8);
+  padding: 3px 10px;
+  border-radius: 20px;
+  margin-left: auto;
+}
+
+.role-block {
+  border-left: 2px solid var(--gray-200);
+  padding-left: 22px;
+  margin-bottom: 22px;
+  margin-left: 17px;
+}
+
+.role-header {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.role-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 5px;
+  border: 1px solid var(--gray-700);
+  color: var(--gray-700);
+  flex-shrink: 0;
+}
+
+.icon--sm {
+  width: 13px;
+  height: 13px;
+}
+
+.role-header h4 {
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.role-note {
+  color: var(--gray-500);
+  font-weight: 500;
+  font-size: 13px;
+}
+
+.role-duration {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 12px;
+  color: var(--gray-500);
+  font-weight: 500;
+  margin-left: auto;
+}
+
+.role-block ul, .edu-block ul {
+  list-style: none;
+  color: var(--gray-600);
+  font-size: 14px;
+}
+
+.role-block li, .edu-block li {
+  position: relative;
+  padding-left: 16px;
+  margin-bottom: 6px;
+}
+
+.role-block li::before, .edu-block li::before {
+  content: "–";
+  position: absolute;
+  left: 0;
+  color: var(--gray-400);
+}
+
+/* ---------- EDUCATION ---------- */
+
+.edu-block {
+  margin-bottom: 30px;
+}
+
+.edu-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.edu-header h3 {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.edu-duration {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 12px;
+  color: var(--gray-500);
+  font-weight: 500;
+}
+
+/* ---------- SKILLS ---------- */
+
+.skills-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.skill-tag {
+  font-family: "JetBrains Mono", monospace;
+  background: var(--white);
+  color: var(--black);
+  border: 1px solid var(--gray-700);
+  font-size: 12px;
+  font-weight: 500;
+  padding: 9px 16px;
+  border-radius: 4px;
+  transition: background 0.2s, color 0.2s;
+}
+
+.skill-tag:hover {
+  background: var(--black);
+  color: var(--white);
+}
+
+/* ---------- ACTIVITIES (timeline) ---------- */
+
+.timeline {
+  list-style: none;
+  position: relative;
+  padding-left: 22px;
+  border-left: 2px solid var(--gray-200);
+  margin-left: 4px;
+}
+
+.timeline-item {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 10px 0;
+  font-size: 14px;
+}
+
+.timeline-dot {
+  position: absolute;
+  left: -27px;
+  top: 16px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--black);
+  border: 2px solid var(--white);
+  box-shadow: 0 0 0 2px var(--gray-200);
+}
+
+.activity-name {
+  font-weight: 600;
+}
+
+.activity-duration {
+  font-family: "JetBrains Mono", monospace;
+  color: var(--gray-500);
+  font-size: 12px;
+}
+
+/* ---------- FOOTER ---------- */
+
+.footer {
+  text-align: center;
+  padding: 28px 24px 32px;
+  color: var(--gray-500);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 12px;
+}
+
+.footer p {
+  margin-top: 16px;
+}
+
+/* ---------- RESPONSIVE ---------- */
+
+@media (max-width: 600px) {
+  .hero { padding: 80px 20px 50px; }
+  .hero h1 { font-size: 34px; }
+  .hero-car-decor { width: 220px; height: 220px; top: 6%; }
+  .hero-contact { display: flex; flex-direction: column; gap: 8px; }
+  .hero-contact span { display: none; }
+  .navbar-inner { gap: 20px; justify-content: flex-start; }
+  .company-duration { margin-left: 0; }
+  .role-duration { margin-left: 0; }
+  .role-block { margin-left: 8px; padding-left: 16px; }
+}
